@@ -4,12 +4,10 @@ title: About
 permalink: /about/
 ---
 
-Some information about you!
-
-### More Information
-
-A place to include any other types of information that you'd like to include about yourself.
+Hi there--thanks for stopping by! My name's Bill; I'm a technologist who's currently working on leveling-up my web development skills. This blog contains my documentation of things I've learned along the way, info about some of the projects I've worked on, and other tidbits.
 
 ### Contact me
 
-[email@domain.com](mailto:email@domain.com)
+Got a question? Find somewhere that I'm totally off-base? Give me a shout!
+
+hello AT billdeitrick DOT com
