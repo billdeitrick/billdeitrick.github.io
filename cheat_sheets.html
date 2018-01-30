@@ -1,0 +1,11 @@
+---
+layout: default
+permalink: /cheat_sheets/index.html
+---
+
+{% assign sorted_cheat_sheets = site.cheat_sheets | sort: 'title' %}
+
+{% for item in sorted_cheat_sheets %}
+	<h1><a href="{{ item.url }}">{{ item.title }}</a></h1>
+	<p>{{ item.description }}</p>
+{% endfor %}

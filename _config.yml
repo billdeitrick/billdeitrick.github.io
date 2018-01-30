@@ -6,7 +6,7 @@
 name: Bill Deitrick
 
 # Short bio or description (displayed in the header)
-description: A technologist's notes and musings
+description: A technologist's notes and documentation
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: https://avatars.githubusercontent.com/u/4174527?s=70
@@ -48,6 +48,18 @@ url: http://www.billdeitrick.com
 # and NOT your User repository (http://yourusername.github.io)
 # then add in the baseurl here, like this: "/repository-name"
 baseurl: ""
+
+# Collections
+collections:
+  cheat_sheets:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: cheat_sheets
+    values:
+      layout: page
 
 #
 # !! You don't need to change any of the configuration flags below !!
