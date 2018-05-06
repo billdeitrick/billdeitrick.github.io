@@ -117,6 +117,7 @@ date: "2018-05-05 22:40:40 -0400"
 | 802.11af-2013         | Television Very High Throughput (TVHT) PHY |
 | 802.11-2016           | Rollup to bring all amendments into base document, the most recent rollup |
 | 802.11ah-2016         | < 1 GHz PHY, long range/low data rate (uses for IoT?) |
+{: .billtable}
 
 * 802.11-2016 is the most recent rollup of the 802.11 standard
 
