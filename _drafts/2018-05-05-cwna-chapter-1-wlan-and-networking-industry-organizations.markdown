@@ -46,3 +46,6 @@ date: "2018-05-05 22:40:40 -0400"
 | 5.470 - 5.725 GHz   | 255 MHz            | U-NII (U-NII-2C)    |
 | 5.725 - 5.850 GHz   | 100 MHz            | U-NII (U-NII-3)     |
 {: .billtable}
+
+* **Contention** is the process employed by 802.11 WLANs to access the medium for tansmission; this is a normal part of operations. Contention wait times become longer as more stations (STA) access the same channel.
+* **Equivalent Isotropically Radiated Power (EIRP)** is a measurement of a system's output power after antenna gain
