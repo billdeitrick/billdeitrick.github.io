@@ -3,5 +3,9 @@
 /* Add a table style */
 .billtable table, .billtable th, .billtable td, .billtabel tf {
   border: solid 1px #eee;
-  padding: 5px;
+  padding: 8px;
+}
+
+.billtable th {
+  font-weight: bold;
 }
