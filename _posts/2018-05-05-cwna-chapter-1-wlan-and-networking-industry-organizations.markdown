@@ -141,3 +141,5 @@ date: "2018-05-05 22:40:40 -0400"
   * Bluetooth can interfere with Wi-Fi, but this is largely eliminated with adaptive frequency hopping
 * **Wireless Metropolitan Area Networks (WMAN)**: typically operated by a service provider who leases services to subscribers (WiMAX, requires licensing)
 * **Wireless Wide Area Networks (WWAN)**: wireless wide area networks (network that connect multiple WANs together) (Free Space Optics, microwave)
+
+_Notes are based on the Certitrek Certified Wireless Network Administrator Official Study Guide (Tom Carpenter and Mitch Dickey)._
