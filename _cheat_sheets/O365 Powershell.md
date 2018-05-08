@@ -14,7 +14,8 @@ description: PowerShell cheat sheet for Office 365.
 * Completes asynchronously and sends a message to a specified email address when finished
 * Requires parameters: `StartDate, EndDate, ReportTitle, ReportType (MessageTrace or MessageDetail)`
 * The `NotifyAddress` parameter specifies the address to receive an alert once the search is finished
-* The `Get-HistoricalSearch` parameter can be used the retrieve the search results after it has finished
+* The `Get-HistoricalSearch` parameter can be used the retrieve the search status after the search has finished
+* To see the search results, download the CSV file at the URL given in the FileURL property returned by the Get-HistoricalSearch cmdlet
 
 ## Search-UnifiedAuditLog
 
