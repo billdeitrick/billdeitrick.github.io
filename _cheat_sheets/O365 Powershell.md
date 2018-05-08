@@ -15,3 +15,10 @@ description: PowerShell cheat sheet for Office 365.
 * Requires parameters: `StartDate, EndDate, ReportTitle, ReportType (MessageTrace or MessageDetail)`
 * The `NotifyAddress` parameter specifies the address to receive an alert once the search is finished
 * The `Get-HistoricalSearch` parameter can be used the retrieve the search results after it has finished
+
+## Search-UnifiedAuditLog
+
+* Allows searching the O365 audit log
+* Returns pages of results
+* The `ResultSize` or `SessionCommand` params can be used to get more entries
+* To get paginated results, use the `SessionId` parameter (can be any value of your choosing) and call the cmdlet multiple times with the same session ID
