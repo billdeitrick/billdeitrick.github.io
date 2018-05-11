@@ -59,7 +59,7 @@ defaults:
       path: ""
       type: cheat_sheets
     values:
-      layout: page
+      layout: cheat_sheet
 
 #
 # !! You don't need to change any of the configuration flags below !!
