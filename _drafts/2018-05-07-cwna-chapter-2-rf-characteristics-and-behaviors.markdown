@@ -23,4 +23,9 @@ date: "2018-05-07 23:51:42 -0400"
 
 ## RF Characteristics and Behaviors
 
-* 
+* **Wavelength** is the distance between two identical points on the wave (that are adjacent)...i.e. from peak to peak or trough to trough.
+  * Wavelength is a critical factor; dictates receiving antenna size and how the wave will interact with its environment
+  * Wavelength is related to the frequency and the speed of light; so, if you have frequency you can calculate wavelenght and vice versa.
+* The **hertz** unit refers to the number of cycles a wave generates in a second 
+  * kilohertz = 1,000 hertz, megahertz is 1,000,000 hertz and gigahertz is 1,000,000,000 hertz
+* The formula $\lambda = c^2$ (where lambda is wavelength in meters, f is frequency in hertz and c is the speed of light in a vacuum) can be used to calculate wavelength and frequency
