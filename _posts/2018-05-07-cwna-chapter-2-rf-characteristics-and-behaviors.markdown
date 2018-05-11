@@ -39,3 +39,5 @@ $$\lambda = c/f$$
 $$\lambda (inches) = 11.811 / f (GHz)$$
 
 $$\lambda (cm) = 30 / f (GHz)$$
+
+_Notes are based on the Certitrek Certified Wireless Network Administrator Official Study Guide (Tom Carpenter and Mitch Dickey)._
