@@ -4,6 +4,8 @@ title: "Wi-Fi Links and Resources"
 date: "2018-05-08 15:20:17 -0400"
 ---
 
+Free resources and helpful links for everything Wi-Fi.
+
 ## Free Tools
 
 ### Revolution Wi-Fi Capacity Planner

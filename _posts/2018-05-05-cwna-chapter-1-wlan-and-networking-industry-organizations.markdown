@@ -4,6 +4,8 @@ title: "CWNA Chapter 1: WLAN and Networking Industry Organizations"
 date: "2018-05-05 22:40:40 -0400"
 ---
 
+Chapter 1 provides an introduction to Wi-Fi industry standards and organizations.
+
 ## Objectives
 
 * Understand how the 802.11 standards came about
