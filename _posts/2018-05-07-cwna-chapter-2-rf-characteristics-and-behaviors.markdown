@@ -40,4 +40,35 @@ $$\lambda (inches) = 11.811 / f (GHz)$$
 
 $$\lambda (cm) = 30 / f (GHz)$$
 
+The following table shows Wi-Fi wavelengths for the first US channels available in 2.4 and 5 GHz. These were calculated using the approximations described above.
+
+![Wi-Fi Channel wavelengths]({{"/images/wifi-wavelengths.png" | absolute_url}})
+
+* Note the wavelength for the 5 GHz channel is approximately half that of the 2.4 GHz channel; this greatly affects the receptivity of 5 GHz channels at greater distances
+
+* **Frequency** refers to the number of wave cycles occurring in a certain window of time (usually 1 second)
+  * So, 1 kilohertz is 1,000 cycles of a wave in one second
+  * Wavelength, frequency and medium are interdependent; the higher frequencies will have the shorter wavelengths, whereas lower frequencies will have the longer wavelengths
+  * By using different frequencies, distinct RF connections can be made available in a given coverage area (or cell)
+  * If frequencies are used that are not sufficiently spaced apart, they will interfere with each other (like hitting 6 or 7 adjacent keys on a piano keyboard)
+  * **Modulation** describes the process in which a carrier is manipulated to represent meaningful information (or data)
+    * **Frequency Shift Keying (FSK)**, altering the frequency to represent data, is used by some wireless systems (but not WLANs)
+
+* **Amplitude** is the characteristic that describes "volume";
+    * A "loud" RF wave with higher amplitude is easier to detect than a "quiet" one with lower amplitude
+    * A wave with greater amplitude is easier to detect at greater distance than one that starts with lower amplitude
+    * **Noise Floor** describes the continual backround RF noise present in a specific location, usually higher in 2.4 GHz and 5 GHz; high noise floor reduces the ability to achieve higher data rates
+    * An increase in amplitude will generally extend the "range" of an RF wave, but simply increasing output power will not necessarily be an improvement. If clients can't match the output power, they might not be able transmit a signal to the access point. So, higher gain antennas or additional access points are usually a better solution.
+    * **Amplitude Shift Keying (ASK)** is a modulation technique involving changing the amplitude of a wave; this is used in WLANs
+    * **Quadrature Amplitude Modulation (QAM)** employs ASK and other modulation techniques
+
+* **Phase** is a comparison between two RF waves; in-phase waves will strengthen each other and out-of-phase waves will cancel each other out
+  * Phase is measured in degrees, with 180 degrees being completely out of phase and 0 degrees being completely in phase
+  * In a practical sense for a CWNA, waves are usually simply in-phase or out-of-phase
+  * In-phase waves can increase the strength of a received signal, but it will never be stronger than the transmitted signal (since waves always weaken as they travel through space)
+  * **Multiple-input-multiple-output (MIMO)** takes advantage of the multiple paths a signal can travel to multiple antennas in slightly different locations in the transmitter and receiver devices; multiple paths produce waves that are usually a bit out of phase as a result of reflection or scattering
+  * **Phase Key Shifting (PSK)** shifts the phase of waves as a modulation technique; 802.11 WLANs use both PSK and ASK
+  
+
+
 _Notes are based on the Certitrek Certified Wireless Network Administrator Official Study Guide (Tom Carpenter and Mitch Dickey)._
