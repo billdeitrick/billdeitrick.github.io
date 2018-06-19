@@ -55,12 +55,12 @@ The following table shows Wi-Fi wavelengths for the first US channels available 
     * **Frequency Shift Keying (FSK)**, altering the frequency to represent data, is used by some wireless systems (but not WLANs)
 
 * **Amplitude** is the characteristic that describes "volume";
-    * A "loud" RF wave with higher amplitude is easier to detect than a "quiet" one with lower amplitude
-    * A wave with greater amplitude is easier to detect at greater distance than one that starts with lower amplitude
-    * **Noise Floor** describes the continual backround RF noise present in a specific location, usually higher in 2.4 GHz and 5 GHz; high noise floor reduces the ability to achieve higher data rates
-    * An increase in amplitude will generally extend the "range" of an RF wave, but simply increasing output power will not necessarily be an improvement. If clients can't match the output power, they might not be able transmit a signal to the access point. So, higher gain antennas or additional access points are usually a better solution.
-    * **Amplitude Shift Keying (ASK)** is a modulation technique involving changing the amplitude of a wave; this is used in WLANs
-    * **Quadrature Amplitude Modulation (QAM)** employs ASK and other modulation techniques
+  * A "loud" RF wave with higher amplitude is easier to detect than a "quiet" one with lower amplitude
+  * A wave with greater amplitude is easier to detect at greater distance than one that starts with lower amplitude
+  * **Noise Floor** describes the continual backround RF noise present in a specific location, usually higher in 2.4 GHz and 5 GHz; high noise floor reduces the ability to achieve higher data rates
+  * An increase in amplitude will generally extend the "range" of an RF wave, but simply increasing output power will not necessarily be an improvement. If clients can't match the output power, they might not be able transmit a signal to the access point. So, higher gain antennas or additional access points are usually a better solution.
+  * **Amplitude Shift Keying (ASK)** is a modulation technique involving changing the amplitude of a wave; this is used in WLANs
+  * **Quadrature Amplitude Modulation (QAM)** employs ASK and other modulation techniques
 
 * **Phase** is a comparison between two RF waves; in-phase waves will strengthen each other and out-of-phase waves will cancel each other out
   * Phase is measured in degrees, with 180 degrees being completely out of phase and 0 degrees being completely in phase
@@ -69,6 +69,4 @@ The following table shows Wi-Fi wavelengths for the first US channels available 
   * **Multiple-input-multiple-output (MIMO)** takes advantage of the multiple paths a signal can travel to multiple antennas in slightly different locations in the transmitter and receiver devices; multiple paths produce waves that are usually a bit out of phase as a result of reflection or scattering
   * **Phase Key Shifting (PSK)** shifts the phase of waves as a modulation technique; 802.11 WLANs use both PSK and ASK
   
-
-
 _Notes are based on the Certitrek Certified Wireless Network Administrator Official Study Guide (Tom Carpenter and Mitch Dickey)._
