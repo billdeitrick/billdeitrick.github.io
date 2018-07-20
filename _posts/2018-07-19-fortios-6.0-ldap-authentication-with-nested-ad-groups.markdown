@@ -2,9 +2,8 @@
 layout: post
 title: "FortiOS 6.0: LDAP Authentication with Nested AD Groups"
 date: "2018-07-19 21:57:00 -0500"
+excerpt: "Using LDAP authentication with AD nested groups in FortiOS 6.0"
 ---
-
-Using LDAP authentication with AD nested groups in FortiOS 6.0
 
 ## Introduction
 
