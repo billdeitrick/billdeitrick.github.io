@@ -1,0 +1,45 @@
+---
+layout: post
+title: "FortiOS 6.0: LDAP Authentication with Nested AD Groups"
+date: "2018-07-19 21:57:00 -0500"
+---
+
+Using LDAP authentication with AD nested groups in FortiOS 6.0
+
+## Introduction
+
+If you want the story, ready this...otherwise you can skip to the solution below. :-)
+
+I ran into an issue today while configuring a new FortiGate cluster running FortiOS 6.0 in an environment heavily utilizing nested AD groups (like many others). On an old unit running FortiOS 5.2, authentication with nested AD groups worked as expected. On the newer unit, authentication was failing every time unless I removed the group restriction. In the GUI at least, it looked like my unit running 6.0 was running the same config as my unit running 5.2.
+
+After a bit of research, I ran across a blog or forum post referencing the `set search-type nested` command for LDAP server config in FortiOS 5.2. That blew the cobwebs off some dark corner of my memory...*yes...I do remember dealing with this before*. Unfortunately, this command was no longer available in 6.0 (and might not be in 5.4 or 5.6...haven't checked those versions). However, a quick look at the LDAP server config options showed a new `group-filter` option. *Hmmm...this looks promising.*
+
+# The Solution
+
+The `group-filter` option allows specifying a custom filter for identifying group membership. In the AD LDAP world, Microsoft implements custom object identifiers (OIDs) that can be used to extend LDAP query syntax (MS docs [here](https://docs.microsoft.com/en-us/windows/desktop/adsi/search-filter-syntax)). One of these custom OIDs, `LDAP_MATCHING_RULE_IN_CHAIN`, provides "a special 'extended' match operator that walks the chain of ancestry in objects all the way to the root until it finds a match" (quoted from MS docs). In other words, we can use this to find all groups of which a user is a member, including nested groups. These OIDs are used in LDAP queries by specifying the numeric OID, in this case `1.2.840.113556.1.4.1941`. Turns out, the documentation on the FortiGate CLI for `set group-filter` even shows examples using this OID:
+
+```
+fortigate (ldap-server) # set group-filter 
+filter    used for group matching. Here are some examples:
+(&(objectclass=group)(member=%u))
+(&(objectclass=group)(member:1.2.840.113556.1.4.1941:=%u))
+(&(objectclass=group)(member:1.2.840.113556.1.4.1941:=%u)(cn=*))
+(&(objectcategory=group)(member:1.2.840.113556.1.4.1941:=%u))
+```
+
+While I couldn't find any documentation stating that this was the case (in fact, I couldn't find any documentation from Fortinet referencing the `group-filter` option at all), the `%u` at the end of the query is a variable that will be expanded to the Distinguished Name (DN) of the user attempting to authenticate.
+
+With this in mind, the following sequence of commands will get authentication with nested AD group membership working in FortiOS 6.0 (assuming your LDAP server entry is already created):
+
+```
+config user ldap
+edit YOUR_LDAP_SERVER_NAME
+set group-filter (&(objectclass=group)(member:1.2.840.113556.1.4.1941:=%u))
+end
+```
+
+You'll notice that the custom filter I used was straight from the CLI help. Once this was done, I was able to successfully authenticate using nested AD groups. 
+
+Of course, there are various other settings you'll need to dial in to set up LDAP authentication the desired way in your environment, but these are well documented elsewhere and beyond the scope of this post. Also, if you have a huge environment with sprawling AD group membership (i.e., users are members of hundreds of groups), you may run into performance issues using `LDAP_MATCHING_RULE_IN_CHAIN` to query for group membership. You do need to be running AD LDAP for this to work; the OID used is Microsoft-specific and isn't available in other directories (to my knowledge, though there may be alternative methods).
+
+Hope this is helpful!
