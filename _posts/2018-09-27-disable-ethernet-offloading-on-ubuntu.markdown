@@ -7,7 +7,7 @@ excerpt: "Disable ethernet offload on Ubuntu for packet sniffing."
 
 ## Introduction
 
-Today I was troubleshooting an MTU issue with an IPSEC VPN link and I noticed something odd with both Wireshark and tcpdump. I was capturing packets with an MTU greater than 1500 on an ethernet network! This is impossible! Turns out, offloading on my NIC was automagically lumping TCP packets together. Furthermore, this is common in modern TCP/IP stacks, and while it definitely helps performance on gbps and faster links, it's a pain when trying to actually troubleshoot MTU issues. Fortunately, at least on my Ubuntu sniffer box, this feature was easy to disable.
+Today I was troubleshooting an MTU issue with an IPSEC VPN link and I noticed something odd with both Wireshark and `tcpdump`. I was capturing packets with an MTU greater than 1500 on an ethernet network! This is impossible! Turns out, offloading on my NIC was automagically lumping TCP packets together. Furthermore, this is common in modern TCP/IP stacks, and while it definitely helps performance on gbps and faster links, it's a pain when trying to actually troubleshoot MTU issues. Fortunately, at least on my Ubuntu sniffer box, this feature was easy to disable.
 
 ## The fix
 
@@ -37,8 +37,8 @@ There's lots more nitty gritty detail here; check out the links below!
 
 # Bonus
 
-You can also accomplish the above temporarily with ethtool. To see what features are currently turned on or off for your interface, you can run:
+You can also accomplish the above temporarily with `ethtool`. To see what features are currently turned on or off for your interface, you can run:
 
 ```bash
-ethtool -k eno1 # Where <eno1> is your interface:w
+ethtool -k eno1 # Where <eno1> is your interface
 ```
