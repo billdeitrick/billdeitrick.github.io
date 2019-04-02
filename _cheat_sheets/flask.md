@@ -2,8 +2,6 @@
 description: Resources for developing Flask web apps.
 ---
 
-# Flask
-
 Web app development with the Flask micro framework and associated extensions.
 
 # Flask Docs
