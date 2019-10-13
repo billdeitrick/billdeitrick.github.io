@@ -3,9 +3,29 @@ layout: default
 permalink: /citn2019/index.html
 ---
 
-{% assign sorted_talk_notes = site.citn_2019.session_notes | sort: 'title' %}
+{% assign sorted_talk_notes = site.citn2019 | where:"type","talk" | sort: "index" %}
+{% assign sorted_session_notes = site.citn2019 | where:"type","session" | sort: "index" %}
 
-{% for item in sorted_talk_notes %}
-	<h1><a href="{{ item.url }}">{{ item.title }}</a></h1>
-	<p>{{ item.description }}</p>
-{% endfor %}
+<h1>Church IT Network Conference 2019 Notes</h1>
+
+<div class="posts">
+    <h2>Talk Notes: All-in with Azure AD, Intune and Office 365</h2>
+    <h3><a href="/citn2019/outline/">Outline</a></h3>
+    <h3><a href="/citn2019/slides/">Slides</a></h3>
+    <article class="post"></article>
+    {% for item in sorted_talk_notes %}
+        <article class="post">
+            <h3><a href="{{ item.url }}">{{item.title}}</a></h3>
+            <p>{{item.description}}</p>
+        </article>
+    {% endfor %}
+
+    <h2>Notes from Sessions Attended</h2>
+    <article class="post"></article>
+    {% for item in sorted_session_notes %}
+        <article class="post">
+            <h3><a href="{{ item.url }}">{{item.title}}</a></h3>
+            <p>Presenter: {{item.presenter}}</p>
+        </article>
+    {% endfor %}
+</div>

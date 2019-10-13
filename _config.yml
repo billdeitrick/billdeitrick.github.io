@@ -53,13 +53,22 @@ baseurl: ""
 collections:
   cheat_sheets:
     output: true
+  citn2019:
+    output: true
 
 defaults:
-  - scope:
+  -
+    scope:
       path: ""
       type: cheat_sheets
     values:
       layout: cheat_sheet
+  -
+    scope:
+      path: ""
+      type: citn2019
+    values:
+      layout: citn2019
 
 #
 # !! You don't need to change any of the configuration flags below !!
