@@ -174,22 +174,26 @@ permalink: /citn2019/outline/
       1. 👉Administrative control of SSO with third-party apps
          1. Azure AD was built for providing authentication to third-party apps and platforms
          1. Basically like if ADFS had was rolled directly into (and part of) active directory
+         1. Access to applications can be controlled with Azure AD groups, or by assigning access to individual users
          1. 👉Hundreds of applications in the gallery
          1. 👉SaaS Apps and/or Microsoft will typically have documentation
-            1. You can also use 
          1. We're moving as much as we can to use Azure AD identities
       1. 👉Azure AD as IDP for G Suite
-         1. One of the biggest wins for (on both church and school side) has been setting up our Azure AD tenant as the identity provider for G Suite. This gives us the following:
+         1. One of the biggest wins for (on both church and school side) has been setting up our Azure AD tenant as the identity provider for G Suite. This gives us the following on the church side (school/EDU is a bit different):
+            1. This is actually fairly straightforward and easy to set up
          1. 👉Google "Cloud Identity Free" licenses
-            1. On the church side, we're using a commercial G Suite account (School uses EDU account) with most users licensed using the Cloud Identity License
-            1. Cloud identity free basically gives you a Google account without Google Apps; so, you essentially get all of the Google consumer services minus Gmail, Google Docs, and so on (which you shouldn't need anyway if you're living in O365)
-            1. Number of cloud identity free seats you get is related to how many paid licenses you purchase; we have 
+            1. On the church side, we're using a commercial G Suite account (School uses EDU account) with most users licensed using the Cloud Identity Free License
+            1. Cloud identity free basically gives you a managed Google account without Google Apps; so, you essentially get all of the Google consumer services minus Gmail, Google Docs, and so on (which you shouldn't need anyway if you're living in O365)
+            1. Number of cloud identity free seats you get is related to how many paid licenses you purchase; we have 10 G Suite Business licenses (for certain use cases that significantly benefit from specific G Suite functionality) which gets us ~550 Cloud Identity Free licenses
          1. 👉Web App Login: "Sign in with Google"
-            1. Seems like Google as IDP is about the most popular; if SSO is supported, you can almost bet Google will be on the list
+            1. Seems like Google as OAUTH IDP is among the most popular; if SSO is supported, you can almost bet Google will be on the list
             1. So, this instantly gets us SSO with web applications all over the Internet
          1. 👉Chrome Sync with Azure AD logins
-            1. Gets us complete platform agnosticism in the browser; users can sign into any device or platform and all of their browser preferences, shortcuts, etc. are there (because of this, we push currently push Chrome as our primary/supported browser everywhere)
-         1. 👉Azure AD logins on ChromeBooks 
+            1. Gets us complete platform agnosticism in the browser; users can sign into any device or platform and all of their browser preferences, shortcuts, etc. are there and will follow them around
+         1. 👉Azure AD logins on ChromeBooks
+            1. While we've ended up using ChromeBooks less than we expected (because the Intune experience is so good), we do find they make sense for employees with really basic needs (email, web apps, really basic word processing)
+            1. This is notwithstanding one-to-one school scenario where students are using Chromebooks; we've got this in production at this point with ~250 student users since July (and working well so far)
+         1. TODO: GIF of Chromebook/Azure Signin
    1. 👉Conditional Access
       1. The second "killer feature" for us...
       1. 👉Configure security controls to apply in specific scenarios
@@ -216,9 +220,12 @@ permalink: /citn2019/outline/
          1. To be consistent, we just stopped using group nesting altogether
       1. 👉Password changes on AAD-joined devices are...jarring
          1. The user is taken to a web page, and then you basically have to sign out and sign in again
-         1. This makes new employee setup especially awkward, I think; they're not prompted when logging in to set a new password, and the only real indication that some action is needed is all of the cloud-connected apps (OneDrive, etc.) basically just don't work 
-1. Intune
+         1. This makes new employee setup especially awkward, I think; they're not prompted when logging in to set a new password, and the only real indication that some action is needed is all of the cloud-connected apps (OneDrive, etc.) basically just don't work
+1. 👉Intune
+   1. Intune is not just GPO in the cloud; it's Mobile Device and Mobile Application managment
+      1. Mobile device of course doesn't just mean tablets and phones; we're talking about Windows devices
    1. Policies
+
    1. Deploying Scripts
    1. App Deployment
    1. Company Portal
