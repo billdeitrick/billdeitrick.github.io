@@ -143,10 +143,167 @@ class: center, middle, inverse
 * Administrative control of SSO with third-party apps
 --
 
+    * Hundreds of applications in the gallery
+    * SaaS vendors and/or Microsoft will typically have documentation
+--
+* Azure AD as IDP for G Suite
+--
 
+    * Google "Cloud Identity Free" licenses
+    * Web App Login: "Sign in with Google"
+    * Chrome Sync with Azure AD logins
+    * Azure AD logins on Chromebooks 😎
+---
+
+# Conditional Access
+--
+
+* Configure security controls to apply in specific scenarios
+--
+
+* Based on a variety of "signals", such as:
+--
+
+    * Group membership
+    * IP Geolocation
+    * Device (managed or not)
+    * Application being accessed
+    * Risk detection (depending on license)
+
+---
+
+# 😞 Our Pain Points
+
+--
+
+* Security group nesting is...unpredictable
+--
+
+* Password changes on AAD-joined devices are...jarring
+
+---
+
+# Intune
+
+* Device configuration profiles
+--
+
+    * Assigned to devices or groups of devices (not OUs), not hierarchical like GPO
+--
+    * Administrative Templates
+--
+    * Custom Profiles/OMA-URI
+--
+        * Specify custom OMA-URI and values
+--
+        * Ingest Custom ADMX
+---
+
+# Patching: No WSUS? No problem!
+--
+
+* Delivery Optimization
+--
+
+* Softare Update Policy
+---
+
+# PowerShell Scripts
+--
+
+* Intune Management Extension deploys scripts and installs Win32 apps
+--
+
+* PowerShell Scripts can be run user or machine-scoped
+--
+
+* DO NOT put sensitive data into PowerShell scripts you push with Intune
+
+---
+
+# App Deployment
+--
+
+* Types of apps that can be deployed on Windows:
+--
+
+    * Microsoft Store apps
+--
+    * Line of business apps (well-behaved MSI)
+--
+    * Windows app (Win32)
+--
+    * Company Portal app
+
+---
+# 😞 Our Pain Points
+--
+
+* App install error codes for Win32, MSI are often...unhelpful
+--
+
+* Built-in cloud-based printer deployment solution is...nonexistent
+    * Needed third party product (Printix)
+--
+* Wi-Fi policies will report an error if pushed to a device without a Wi-Fi adapter, which we find...annoying
+--
+
+* Reporting intervals are...really slow 🐢
+---
+# 🏁 Getting Devices "Business Ready"
+--
+
+* Azure AD/Intune Integration
+--
+
+* Primary choice: User or IT-driven?
+--
+
+    * Self-enrollment methods
+        * BYOD
+        * Azure AD Join
+        * Autopilot
+--
+    * Administrator-based enrollment methods
+        * Hybrid Azure AD Join
+        * Bulk enrollment
+--
+* Our process: Bulk enrollment, Fresh Start reset
+---
+# 🍨 Random Tasty Tidbits
+--
+
+* 🔐 BitLocker: Key escrow to Azure AD, Intune policy for automatic encryption
+--
+
+* 👍 Azure AD Sign-in logs
+--
+
+* 😎 Azure Cloud Shell
+--
+
+* 🔑 Intune: Compliance policies
+--
+
+* 📱 Mobile App Management
+
+---
+
+# Conclusion: Our Goals
+
+--
+
+* Best fit for ministry needs within licensing and cost constraints
+* Better Windows device management: NO MORE IMAGING!! 🎉
+* SSO for SaaS apps
+* Mobile Application Management (MAM) 
+* Device-agnostic, user-driven, available-from-anywhere experience
+* Most future proof solution
+
+---
 
 class: center, middle, inverse
 
 ## 📝 billdeitrick.com/citn2019
-## 📧 hello@billdeitrick.com
+## 📧 bill.deitrick@cwc.life
 ## 🗨 @billdeitrick (CITN Slack)

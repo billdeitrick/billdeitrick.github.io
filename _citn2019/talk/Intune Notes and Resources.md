@@ -5,12 +5,13 @@ title: Intune Notes and Resources
 index: 3
 ---
 
-### General Intune Links
+## General Intune Links
 
 * [What is Intune?](https://docs.microsoft.com/en-us/intune/fundamentals/what-is-intune)
 * [Getting Ready for Windows 10 - An MDM Primer](https://blogs.technet.microsoft.com/tip_of_the_day/2015/11/27/tip-of-the-day-getting-ready-for-windows-10-an-mdm-primer/)
 * [Diagnose MDM Failures in Windows 10](https://docs.microsoft.com/en-us/windows/client-management/mdm/diagnose-mdm-failures-in-windows-10)
 * [Printix (deploy printers from the cloud)](https://www.printix.net/)
+* [MMAT-MDM Migration Analysis Tool (compare GPO set for a target user/computer with MDM policies)](https://github.com/WindowsDeviceManagement/MMAT)
 
 
 ## Configuration Profiles in Intune
@@ -60,17 +61,19 @@ index: 3
         * App GUIDs can be obtained from the URL for the app in the Intune UI
     * You can force a retry by deleting the key for the app install (under the appropriate user GUID) and then restarting the Microsoft Intune Management Extension service
 
-### Simple Install Command Example: install.cmd
+### Simple Install Command Example: Install BitDefender
 
 Simple batch entry point for installing a Win32 app with command line switches.
 
 ```batch
-"%~dp0executable_name.exe" /bdparams /silent
+"%~dp0epskit_x64.exe" /bdparams /silent
 ```
 
 `%~dp0` above specifies the current directory.
 
-### More Interesting Install Command Example: Install Exam View
+Your installer must support silent installation to be deployed with Intune.
+
+### More Interesting Install Script Example: Install Exam View
 
 This is a more involved installation script example that involves working around issues caused by a poorly-behaved installer (symlinks content directories to user's OneDrive, removes secondary installer not needed).
 

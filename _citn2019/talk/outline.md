@@ -62,8 +62,6 @@ permalink: /citn2019/outline/
       1. Azure AD makes SSO for SaaS apps really easy...like, really easy. This sort of thing used to require major infrastructure and investment.
       1. We love the seamless experience for our users; this goes beyond apps that we've explicitly provisioned for SSO.
       1. Since we're authenticating G Suite against AAD, our users can sign in with their accounts anywhere the see a "Sign in with Office 365" or "Sign in with Google" button
-   1. 👉Mobile Application Management (MAM) 
-      1. Encrypt and sandbox the organization's data on employee personal devices, centrally manage configuration on those apps (without a need to have the device managed by our MDM)
    1. 👉Device-agnostic, user-driven, available-from-anywhere experience
       1. We want our users to be completely interchangeable with PC, Mac, Chromebook, or a mobile device and be able to sign in with immediate access to all of their data on that platform
       1. We want as much user state to be transferred as possible, so there's relatively little (other than signing in) that a user needs to do to be immediately up and running on a new device
@@ -121,6 +119,7 @@ permalink: /citn2019/outline/
          1. Azure AD isn't just traditional Active Directory in the cloud
       1. 👉Goodbye NTLM, LDAP, Group Policy, and RADIUS; hello web services
          1. OAUTH, SAML, OpenID, etc.; these are the languages Azure AD speaks
+         1. Windows 10 uses WS-Fed to join a device to Azure AD and WS-Trust to sign in to an Azure AD-joined device
          1. The traditional AD auth protocols are not part of Azure AD itself. You can get them with another Azure service (called Azure Active Directory Domain Services - ADDS), but in the words of Han Solo, "It's gonna cost you something extra".
          1. At first, I didn't think we could live without LDAP and RADIUS especially; I thought we were going to be jumping directly in with Azure ADDS. 
          1. Two major pain points:
@@ -164,7 +163,7 @@ permalink: /citn2019/outline/
       1. In traditional AD this was straightforward; devices were either domain-joined or not
          1. Three types of joins in AAD:
       1. 👉Azure AD Registered
-         1. Typically personal devices
+         1. Personal devices, BYOD scenarios
          1. A device becomes AAD registered when you use an app on that device to sign in to your organization account in AAD
       1. 👉Azure AD Joined
          1. Closest analogue to devices joined to traditional AD; organization owned, users sign in using Azure AD accounts
@@ -183,7 +182,7 @@ permalink: /citn2019/outline/
          1. Basically like if ADFS had was rolled directly into (and part of) active directory
          1. Access to applications can be controlled with Azure AD groups, or by assigning access to individual users
          1. 👉Hundreds of applications in the gallery
-         1. 👉SaaS Apps and/or Microsoft will typically have documentation
+         1. SaaS vendors and/or Microsoft will typically have documentation
          1. We're moving as much as we can to use Azure AD identities
       1. 👉Azure AD as IDP for G Suite
          1. One of the biggest wins for (on both church and school side) has been setting up our Azure AD tenant as the identity provider for G Suite. This gives us the following on the church side (school/EDU is a bit different):
@@ -192,14 +191,14 @@ permalink: /citn2019/outline/
             1. On the church side, we're using a commercial G Suite account (School uses EDU account) with most users licensed using the Cloud Identity Free License
             1. Cloud identity free basically gives you a managed Google account without Google Apps; so, you essentially get all of the Google consumer services minus Gmail, Google Docs, and so on (which you shouldn't need anyway if you're living in O365)
             1. Number of cloud identity free seats you get is related to how many paid licenses you purchase; we have 10 G Suite Business licenses (for certain use cases that significantly benefit from specific G Suite functionality) which gets us ~550 Cloud Identity Free licenses
-         1. 👉Web App Login: "Sign in with Google"
+         1. Web App Login: "Sign in with Google"
             1. Seems like Google as OAUTH IDP is among the most popular; if SSO is supported, you can almost bet Google will be on the list
             1. So, this instantly gets us SSO with web applications all over the Internet
-         1. 👉Chrome Sync with Azure AD logins
+         1. Chrome Sync with Azure AD logins
             1. Gets us complete platform agnosticism in the browser; users can sign into any device or platform and all of their browser preferences, shortcuts, etc. are there and will follow them around
                1. We also force Chrome browser management with a policy in Intune, and then can use G Suite to specify browser settings on supported platforms...this is the 💣
                1. We whitelist allowed Chrome extensions this way, and do things like prevent push notifications (we found users would blindly allow these, and then call us wondering why they were getting random popup advertisements...)
-         1. 👉Azure AD logins on ChromeBooks
+         1. Azure AD logins on ChromeBooks 😎
             1. While we've ended up using ChromeBooks less than we expected (because the Intune experience is so good), we do find they make sense for employees with really basic needs (email, web apps, really basic word processing)
             1. This is notwithstanding one-to-one school scenario where students are using Chromebooks; we've got this in production at this point with ~250 student users since July (and working well so far)
          1. TODO: GIF of Chromebook/Azure Signin
@@ -209,6 +208,7 @@ permalink: /citn2019/outline/
    1. 👉Conditional Access
       1. The second "killer feature" for us...
       1. 👉Configure security controls to apply in specific scenarios
+         1. Basically, conditionally allow/deny access, require MFA, etc.
       1. 👉Based on a variety of "signals", such as:
          1. Group membership (or even specific user)
          1. IP Geolocation
@@ -322,6 +322,7 @@ permalink: /citn2019/outline/
          1. The company portal app is an important part of app deployment; allows for self-service app installation
             1. You make apps "Required" or "Available"; required apps are automatically pushed to the device, available apps can be installed by users in the Company Portal
             1. This is a great self-service option for "optional" applications; users can install them on-demand, just like the app store on their mobile device (doesn't matter if it's a Win32 app, Windows Store app, etc)
+            1. TODO: Company Portal app image
    1. 👉Pain Points
       1. 👉App install error codes for Win32, MSI are often...unhelpful
          1. Means you usually have to resort to more hands-on troubleshooting methods on your test machine. See website for notes on this.
@@ -336,11 +337,38 @@ permalink: /citn2019/outline/
          1. As a result of this, we have to push separate policies for desktops and laptops
       1. 👉Reporting intervals are...really slow 🐢
          1. It tends to take a long time for the pretty donut graphs in Intune to reflect reality
-1. TODO: Enrolling/Joining Devices
-   1. Enrollment Methods
-      1. AutoPilot
-   1. Our Process (So Far)
+1. 👉Getting Devices "Business Ready"
+   1. I struggled with what exactly to title this slide, because "Enroll", "Register", "Join", all mean something a bit different in Modern Management parlance; I'm taking the 1000 ft. view here
+      1. "Business Ready" is what Microsoft calls a device that is ready for a user to use
+         1. So, the question is, how do we take a device from boxed to busy?
+         1. In other words..."how to I get my devices into Azure AD and Intune to manage them?"
+   1. This is a fairly nuanced topic, mostly because there are different options depending on your exact scenario and needs. This could be another whole session in and of itself.
+      1. I'll mosty focus on what we've done (again, focusing on being cloud-only since that's our goal)
+   1. 👉Azure AD/Intune Integration
+      1. As you would expect, Azure AD and Intune are well integrated. You specify Intune as your MDM in Azure, and when you join a device in Azure AD it can be automatically enrolled in Intune and will pull down policies
+         1. Recall Azure AD Registered = BYOD, Joined = organization owned
+   1. 👉Primary choice: User or IT-driven?
+      1. Microsoft parlance: self-enrollment or administrator-based enrollment in Intune
+      1. You can set things up so you hand users an unopened box, they unpack the device,connect to Wi-Fi, sign in with their creds, and everything is automatically deployed
+         1. Downside of this is that it will take some time on the user's end for the device to be ready, upside is that this works great if you don't have IT at a remote site and want to ship devices directly, or need a really light touch from IT
+      1. Or, you can make everything more IT-driven; IT does device prep, hands device to user that is ready to go
+         1. Downside is that IT time and touch is required, upside is that you can hand the user a device that is all-but ready to use
+         1. This is our choice; we want to hand users a device that is as ready to do ministry as possible
+      1. We'll talk about Intune enrollment methods now, because ultimately the more nuanced topic here (than just joining devices to Azure AD)
+      1. 👉Self-enrollment methods:
+         1. I'm not hitting everything here, because there's a lot...pulling out what I think will be most relevant for most of us
+         1. 👉BYOD
+         1. Azure AD Join
+         1. Autopilot
+            1. Most interested in White Glove deployment, but needs TPM 2.0
+      1. 👉Administrator-based enrollment methods
+         1. 👉Hybrid Azure AD Join
+         1. Bulk enroll
+   1. 👉Our Process: Bulk enrollment, Fresh Start resets
+      1. I call this the "Gray Glove" deployment
+      1. Downside: we don't get user/device association in Azure AD/Intune
 1. 👉Random Tasty Tidbits 🍨
+   1. Things I wanted to share, but didn't fit anywhere else!
    1. 👉BitLocker: Key escrow to Azure AD, Intune policy for automatic encryption 🔐
       1. Super easy to set up...really no good reason not to be deploying drive encryption
    1. 👉Azure AD Sign-in logs 👍
@@ -352,7 +380,12 @@ permalink: /citn2019/outline/
       1. Specify standards your device must meet in order to satisfy your security policy (BitLocker enabled, Win version > X, etc.)
       1. Can be used in Conditional Access rules in Azure AD to make authentication decisions!
    1. 👉Mobile App Management 📱
-1. Conclusion: What's the right path for me?
+      1. Basically allows you to create a sandboxed environment on employee personal devices with organization data
+         1. You can wipe just org data when employee leaves
+         1. You can require specific security controls for your data on the employee's device
+         1. Big win: you don't need to manage the entire device; you're only managing the apps connecting to your data
+         1. This works in conjunction with AAD conditional access rules to 
+1. Conclusion: What's the right path?
    1. Goals we set out to meet:
 1. Notes and Contact
    1. Check out the Microsoft Learn link 
@@ -360,11 +393,9 @@ permalink: /citn2019/outline/
 
 ## Content ToDo
 * TODO: Enrollment and AutoPilot
-* TODO: conclusion
-* TODO: tidbit--mobile app management
+* TODO: Conclusion
 
 ## To Test
 * TODO: Password changes on ChromeBook
 * TODO: Windows activation with Provisioning Packages
-* TODO: Autopilot activation with devices provisioned using provisioning packages
 * TODO: https://churchitnetworkcom.sharepoint.com/:f:/s/Leadership/EtSkZW5WC6JJjkypLMxeOWsBAF__zdAmm8cCKyAJV9J83A?e=DTSvfy 
