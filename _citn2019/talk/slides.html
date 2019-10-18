@@ -38,6 +38,12 @@ Milton, PA
 
 ---
 
+class: center, middle, inverse
+
+# Your Environments
+
+---
+
 # Why Azure AD and Intune?
 
 --
@@ -58,13 +64,86 @@ Milton, PA
 --
 
 * Most future proof solution
+
+---
+
+# M365: Two Minute Overview
+
 --
 
+* Office 365 ProPlus
+--
+
+* Office 365 - E1, E3, E5
+--
+
+* Enterprise Mobility + Security (EM+S) - E3, E5
+--
+
+* Windows Enterprise - E3, E5
+--
+
+* Microsoft 365 (M365) - E3, E5
+--
+
+* Our Licensing Strategy
+    * Users with org-owned Windows devices: M365 E3
+    * Users without org-owned Windows devices: ProPlus, O365 E1, and EM+S
+    * Users with no org-owned devices: O365 E1 and EM+S
 ---
 
+# "Azure AD is not Cloud AD"
 
+--
 
+* Goodbye NTLM, LDAP, Group Policy, and RADIUS; hello web services
+--
+
+* Azure AD manages applications
+--
+
+* Flat user structure; no more domains, forests, or OUs
+--
+
+* Can't customize the directory schema
 ---
+
+# Groups
+--
+
+* Two types of groups: Security and O365
+--
+
+* Three membership types: Assigned, Dynamic User, Dynamic Device
+--
+
+* Group-based licensing
+--
+
+    * Sec-[GROUP TYPE]-[GROUP NAME]
+---
+
+# Connecting devices
+--
+
+* Azure AD Registered
+--
+
+* Azure AD Joined
+--
+
+    * Down-Level Logon Name: `AzureAD\FirstLast`
+--
+* Hybrid Azure AD Joined
+---
+
+# Enterprise applications
+--
+
+* Administrative control of SSO with third-party apps
+--
+
+
 
 class: center, middle, inverse
 

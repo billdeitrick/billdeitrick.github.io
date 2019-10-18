@@ -28,3 +28,4 @@ index: 2
 ## Misc Links
 
 * [Azure Active Directory is not Active Directory](https://samcogan.com/azure-active-directory-is-not-active-directory/)
+* [Mosyle Auth (authenticate Macs against Azure AD)](https://business.mosyle.com/solutions/sso)
