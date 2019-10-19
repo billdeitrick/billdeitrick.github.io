@@ -201,7 +201,7 @@ permalink: /citn2019/outline/
          1. Azure AD logins on ChromeBooks 😎
             1. While we've ended up using ChromeBooks less than we expected (because the Intune experience is so good), we do find they make sense for employees with really basic needs (email, web apps, really basic word processing)
             1. This is notwithstanding one-to-one school scenario where students are using Chromebooks; we've got this in production at this point with ~250 student users since July (and working well so far)
-         1. TODO: GIF of Chromebook/Azure Signin
+         1. 👉👉Chrome signin with Azure AD
          1. One note: there is not a native way to bind Macs to Azure AD for SSO
             1. Your Mac MDM may be able to help with this...Mosyle offers "Mosyle Auth for Mac Login Window" which advertises Azure AD logins for Mac (this is a paid addon)
             1. We haven't tested this yet (since we don't have any Macs in the school environment, but we plan to do so soon).
@@ -233,7 +233,6 @@ permalink: /citn2019/outline/
       1. 👉Password changes on AAD-joined devices are...jarring
          1. The user is taken to a web page, and then you basically have to sign out and sign in again
          1. This makes new employee setup especially awkward, I think; they're not prompted when logging in to set a new password, and the only real indication that some action is needed is all of the cloud-connected apps (OneDrive, etc.) basically just don't work
-         1. TODO: Password change video
 1. 👉Intune
    1. Intune is not just "GPO in the cloud"; it's Mobile Device Management and Mobile Application Managment
       1. MDM...just like you would use for iOS/iPadOS devices, Android Devices, Macs, etc. Now you use it for Windows
@@ -396,6 +395,5 @@ permalink: /citn2019/outline/
 * TODO: Conclusion
 
 ## To Test
-* TODO: Password changes on ChromeBook
 * TODO: Windows activation with Provisioning Packages
 * TODO: https://churchitnetworkcom.sharepoint.com/:f:/s/Leadership/EtSkZW5WC6JJjkypLMxeOWsBAF__zdAmm8cCKyAJV9J83A?e=DTSvfy 
