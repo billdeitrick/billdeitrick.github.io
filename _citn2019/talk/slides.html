@@ -1,9 +1,16 @@
 ---
+template: citn-template
 layout: presentation
 title: All-in with Azure AD, Intune, and Office 365
 permalink: /citn2019/slides/
 ---
 
+name: citn-template
+
+<img src="/citn2019/talk/assets/citn_logo.png" style="position:absolute;bottom: 20px;left: 20px;width: 100px;opacity: .7;z-index: 0;">
+
+---
+template: citn-template
 class: center, middle, inverse
 
 # All-in with Azure AD, Intune, and Office 365
@@ -35,6 +42,7 @@ Milton, PA
           1. Introduce vendors
           1. Avoid prescriptive; stick to descriptive
 ---
+template: citn-template
 class: center, middle, inverse
 
 # Your Environments
@@ -49,6 +57,7 @@ class: center, middle, inverse
     1. Managing non-windows devices with Intune?
 1. Totally in the MS modern managment stack (all MS, no on-prem)?
 ---
+template: citn-template
 
 # Our Environment
 
@@ -80,6 +89,7 @@ Basically two environments we're managing: church/school
     1. Azure AD auth for all devices (Win, Chrome)
     1. Split environments: summer project, move to Azure AD (no more on-prem dependencies)
 ---
+template: citn-template
 
 # Why Azure AD and Intune?
 ???
@@ -133,6 +143,7 @@ Basically two environments we're managing: church/school
 ???
 1. Momentum here; MS path forward for orgs like us
 ---
+template: citn-template
 
 # M365: Two Minute Overview
 ???
@@ -186,6 +197,7 @@ Basically two environments we're managing: church/school
 1. This mix-and-match gives best value
     1. Helped by 50 free EMS licenses (not available anymore)
 ---
+template: citn-template
 
 # "Azure AD is not Cloud AD"
 
@@ -222,6 +234,7 @@ Basically two environments we're managing: church/school
 
 * Can't customize the directory schema
 ---
+template: citn-template
 
 # Groups
 ???
@@ -254,6 +267,7 @@ A bit different in AAD
 1. Groups broken down into types (Lic, Role)
 1. Really nice for searching (users aren't seeing these)
 ---
+template: citn-template
 
 # Connecting devices
 ???
@@ -288,6 +302,7 @@ Only one type of join in traditional AD (three in AAD)
 ### Hybrid AAD joined
 1. Both AAD and AD; not explored in depth (eliminate on prem!)
 ---
+template: citn-template
 
 # Enterprise applications
 ???
@@ -340,6 +355,7 @@ Managing connected apps that we talked about; users sign in with org accounts
 1. Not including student use...students on Chrome, not going anywhere else soon
     1. School login gets O365, G Suite, SIS, etc.
 ---
+template: citn-template
 
 class: center, middle
 
@@ -351,11 +367,17 @@ class: center, middle
     1. MDM may help...Mosyl: "Mosyle Auth for Mac Login Window" which advertises Azure AD logins for Mac (this is a paid addon)
     1. We haven't tested this yet (since we don't have any Macs in the school environment, but we plan to do so soon).
 ---
+template: citn-template
 
 # Conditional Access
+???
+A "killer feature"...no analogue in traditional AD
 --
 
 * Configure security controls to apply in specific scenarios
+???
+### Configure security controls
+1. Conditional allow/deny, require MFA, specific apps, etc.
 --
 
 * Based on a variety of "signals", such as:
@@ -366,26 +388,56 @@ class: center, middle
     * Device (managed or not)
     * Application being accessed
     * Risk detection (depending on license)
-
+???
+### Signals
+1. Examples we've implemented:
+    1. MFA for admins
+    1. Approved Apps (sandbox org data, works w/Intune Mobile App Managment)
+1. Other possibilities:
+    1. Geolocation blocking
+    1. Broader MFA rollout
 ---
+template: citn-template
 
 # 😞 Our Pain Points
 
 --
 
 * Security group nesting is...unpredictable
+???
+## Sec group nesting
+1. Works some places, not others
+1. So...no more RBAC 😞
 --
 
 * Password changes on AAD-joined devices are...jarring
 
+???
+## Password changes
+1. Web page!
+1. New employee...sign out/in, or nothing works
 ---
+template: citn-template
 
 # Intune
-
+???
+1. Not just GPO in cloud (MDM, MAM)
+1. MDM like for mobile devices
+--
 * Device configuration profiles
+???
+### Device configuration Profiles
+1. Managing these instead of GPO
 --
 
     * Assigned to devices or groups of devices (not OUs), not hierarchical like GPO
+???
+### Assigned to devices
+1. Select platform, then type
+    1. See website for more
+    1. Basically 8 config profiles for whole config
+1. Built-in profiles not exhaustive as GPO
+    1. Recent additions give more capability
 --
     * Administrative Templates
 --
@@ -397,6 +449,7 @@ class: center, middle
 --
         * Ingest Custom ADMX
 ---
+template: citn-template
 
 # Patching: No WSUS? No problem!
 --
@@ -408,6 +461,7 @@ class: center, middle
 --
 <img src="/citn2019/talk/assets/update_rings.png" style="width:100%; position:absolute; left:0; bottom: 100px;">
 ---
+template: citn-template
 
 # PowerShell Scripts
 --
@@ -421,6 +475,7 @@ class: center, middle
 * DO NOT put sensitive data into PowerShell scripts you push with Intune
 
 ---
+template: citn-template
 
 # App Deployment
 --
@@ -439,6 +494,7 @@ class: center, middle
 <img src="/citn2019/talk/assets/company_portal.png" style="width:575px; position:absolute; right:110px; bottom:20px;">
 
 ---
+template: citn-template
 # 😞 Our Pain Points
 --
 
@@ -453,6 +509,7 @@ class: center, middle
 
 * Reporting intervals are...really slow 🐢
 ---
+template: citn-template
 # 🏁 Getting Devices "Business Ready"
 --
 
@@ -473,6 +530,7 @@ class: center, middle
 --
 * Our process: Bulk enrollment, Fresh Start reset
 ---
+template: citn-template
 # 🍨 Random Tasty Tidbits
 --
 
@@ -491,6 +549,7 @@ class: center, middle
 * 📱 Mobile App Management
 
 ---
+template: citn-template
 
 # Conclusion: Our Goals
 
@@ -504,6 +563,7 @@ class: center, middle
 * Most future proof solution
 
 ---
+template: citn-template
 
 class: center, middle, inverse
 

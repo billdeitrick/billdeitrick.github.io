@@ -231,7 +231,7 @@ permalink: /citn2019/outline/
          1. We found this role-based approach really didn't work in Azure AD, because nesting was so hit or miss
          1. To be consistent, we just stopped using group nesting altogether
       1. 👉Password changes on AAD-joined devices are...jarring
-         1. The user is taken to a web page, and then you basically have to sign out and sign in again
+         1. The user is taken to a web page
          1. This makes new employee setup especially awkward, I think; they're not prompted when logging in to set a new password, and the only real indication that some action is needed is all of the cloud-connected apps (OneDrive, etc.) basically just don't work
 1. 👉Intune
    1. Intune is not just "GPO in the cloud"; it's Mobile Device Management and Mobile Application Managment
