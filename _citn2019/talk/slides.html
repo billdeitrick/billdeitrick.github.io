@@ -4,9 +4,6 @@ title: All-in with Azure AD, Intune, and Office 365
 permalink: /citn2019/slides/
 ---
 
-<!--docker run --rm -t --net=host -v ${pwd}:/slides astefanutti/decktape --slides 1-3,10,17,22,27,32,37,41,44,50,53,57,63,68,74,80,82,83 http://10.0.75.1:4000/citn2019/slides slides.pdf-->
-<!--jekyll serve --host 0.0.0.0-->
-
 class: center, middle, inverse
 
 # All-in with Azure AD, Intune, and Office 365
@@ -19,6 +16,38 @@ Information Services Director
 Christ Wesleyan Church  
 Milton, PA
 ]
+???
+1. Introduction
+    1. This is the AAD, Intune, O365 talk...heads down as you leave...
+    1. About Me
+       1. Professional: ISD, CS Degree, Experience: Higher Ed, Fortune 500, Church/K-12
+       1. Personal: Family, kiddos (time!), Python, web dev, farm
+    1. Intoduce Mike
+    1. Overview
+       1. IT Dir perspective on prem to AAD/Intune/O365-driven in ministry environment
+          1. Focus: identity mgmt AAD, dev mgmt Intune
+          1. Intune (Windows) w/multi-platform auth
+          1. Less focus on O365
+       1. Goal: Share experience, equip you
+          1. Not exhaustive
+          1. Selective, most relevant; more details on website
+       1. Not expert or consultant; sharing on experience
+          1. Introduce vendors
+          1. Avoid prescriptive; stick to descriptive
+---
+class: center, middle, inverse
+
+# Your Environments
+???
+1. Who is using O365 today?
+    1. Using cloud-only identities (no on-prem environment)?
+    1. Using identities from on-prem?
+    1. Anyone doing federation (ADFS)?
+1. Who is using Azure AD for more than just O365 identities?
+1. Who is using Intune to manage Windows devices?
+    1. Using hybrid joined devices (Intune and On-prem AD)?
+    1. Managing non-windows devices with Intune?
+1. Totally in the MS modern managment stack (all MS, no on-prem)?
 ---
 
 # Our Environment
@@ -38,124 +67,278 @@ Milton, PA
 * Employees all use PCs, students use Chromebooks (one-to-one for high school) and iPads
 * Fully transitioned into an Azure AD-driven environment
 ]
+???
+I don't need to read...
 
----
-
-class: center, middle, inverse
-
-# Your Environments
-
+Basically two environments we're managing: church/school
+1. Church
+    1. Device choice
+    1. Not yet all-in! 😛
+        1. Azure AD IDP for G Suite (more on this later)
+1. School
+    1. Azure AD and G Suite for employees and students
+    1. Azure AD auth for all devices (Win, Chrome)
+    1. Split environments: summer project, move to Azure AD (no more on-prem dependencies)
 ---
 
 # Why Azure AD and Intune?
-
+???
+1. Call of the cloud: less overhead, less time to manage, someone else on the hook when it breaks
+   1. Ultimately about ministry value: this is the win! 🎉
+1. Our specific scenario:
+   1. Church/school shared; LIC changes (EDU-specific) = time to split
+   1. Originally: 2 traditional AD, trusts, etc.
+      1. More servers, more management overhead/complexity
+   1. G Suite Chromebooks only (great experience, students)? 
+      1. Hardware limits, Microsoft formats
+      1. Need PCs...put identities in G Suite? No Win signin w/o third party
+   1. AAD/Intune...why not? Move management tools forward, give platform flexibility
 --
 
 * Best fit for ministry needs within licensing and cost constraints
+???
+### Ministry Needs:
+1. No more servers; greatest platform flexibility
+1. Want small server footprint (containerize and PaaS what we do maintain); < WinDoze
 --
 
 * Better Windows device management: NO MORE IMAGING!! 🎉
+???
+### Windows Mgmt
+1. Building images always quick, favorite activity. 🙄
+1. No imaging w/Windows 10 and Intune!
+1. Gain in mgmt functionality!
 --
 
-* SSO for SaaS apps
---
-
-* Mobile Application Management (MAM) 
+* Identity Consolidation
+???
+### Identity
+1. Reduce account sprawl
+1. Azure AD = Easy SSO, don't need complex infra!
+1. Seamless for users, even for apps not explicitly provisioned
+1. Integrated G Suite, can use "Sign in w/O365 or "Sign in w/Google" anywhere
 --
 
 * Device-agnostic, user-driven, available-from-anywhere experience
+???
+### Dev-agnostic
+1. Easily, seamlessly move between devices + platforms
+1. Data accessibility, state transfer; just sign in and work
+1. Self-service; base set of apps, self-service install additional from curated + approved list
+1. Available anywhere...no VPN required. (Users get elsewhere, we offer best solution)
+1. TL;DL; - we want Windows devices to be ChromeBooks (mgmt; experience -- deploy fewer now)
 --
 
-* Most future proof solution
-
+* Forward-looking solution
+???
+1. Momentum here; MS path forward for orgs like us
 ---
 
 # M365: Two Minute Overview
-
+???
+1. Microsoft 365 is suite giving access to modern MS
+1. Most already familiar...25% of retail as 501c (see website)
 --
 
 * Office 365 ProPlus
+???
+### ProPlus
+1. Local office apps
 --
 
 * Office 365 - E1, E3, E5
+???
+### Office 365
+1. The office 365 cloud services
+1. Limited Azure AD; for what we're talking today need 👇
 --
 
-* Enterprise Mobility + Security (EM+S) - E3, E5
+* Enterprise Mobility Plus Security (EMS) - E3, E5
+???
+### EMS
+1. Intune, Azure Active Directory Premium
+1. Identity + Dev Mgmt in cloud
 --
 
 * Windows Enterprise - E3, E5
+???
+### Win Ent
+1. Win-as-a-service, user-based (last windows ver)
+1. User-based, not device based like vol lic.
+1. Ent bits included w/pro (user sign in unlocks)
+1. E3 vs. E5 (Win Defend ATP)
 --
 
 * Microsoft 365 (M365) - E3, E5
+???
+### M365
+1. The total package; includes all of the above
+1. E3 = E5+ more advanced security, discovery, and auditing tools, plus phone system
 --
 
 * Our Licensing Strategy
     * Users with org-owned Windows devices: M365 E3
     * Users without org-owned Windows devices: ProPlus, O365 E1, and EM+S
     * Users with no org-owned devices: O365 E1 and EM+S
+???
+### Licensing Strategy
+1. E3 sufficient for us
+1. This mix-and-match gives best value
+    1. Helped by 50 free EMS licenses (not available anymore)
 ---
 
 # "Azure AD is not Cloud AD"
 
+???
+1. Ads look to sell...yet another service
+    1. AD AAD very diff...diff needs, diff eras, diff tech stacks
+    1. AAD != traditional AD in cloud
 --
 
 * Goodbye NTLM, LDAP, Group Policy, and RADIUS; hello web services
+???
+### Goodbye
+1. Native Languages: OAUTH, SAML, OpenID, WS-Fed, WS-Trust etc.
+    1. WS-FED = join AAD, WS-Trust sign-in
+    1. Traditional protocols "gonna cost you someting extra" - Han Solo
+1. Thought needed LDAP + RADIUS (ADDS, servers in Azure)
+1. Two major pain areas:
+    1. PBX using LDAP for user web portal auth
+    1. WPA2 Enterprise Wi-Fi
+        1. NPS/RADIUS - employees, AD-joined deivces
+        1. Internal Wi-Fi = printing (most cases)
+            1. Beginning Meraki rollout; will largely ease this pain
 --
 
 * Azure AD manages applications
+???
+### Manage Apps
+1. SSO-enabled SaaS, assign users access
+1. No analogue in traditional AD
 --
 
-* Flat user structure; no more domains, forests, or OUs
+* Flat user structure; no more OUs or forests
 --
 
 * Can't customize the directory schema
 ---
 
 # Groups
+???
+A bit different in AAD
 --
 
 * Two types of groups: Security and O365
 --
 
 * Three membership types: Assigned, Dynamic User, Dynamic Device
+???
+### Three membership types
+1. Dynamic User + Device (like Exchange dynamic distrib)
+    1. Build filter, group populates automagically (no AD analogue)
+    1. Filters user powershell-like syntax
+    1. Useful to us...automatically create elem, middle, high school groups
+        1. (based on last two digits of grad year in UPNs)
 --
 
 * Group-based licensing
+???
+### Group-based licensing
+1. Use groups to assign licenses to users! Simplified, flexible
+1. We try not to use O365 groups as sec groups for things other than the actual O365 group's content. This can get awkward... esp. if allowing users to manage groups.
 --
 
     * Sec-[GROUP TYPE]-[GROUP NAME]
+???
+### Sec-[GROUP TYPE]-[GROUP NAME]
+1. Groups broken down into types (Lic, Role)
+1. Really nice for searching (users aren't seeing these)
 ---
 
 # Connecting devices
+???
+Only one type of join in traditional AD (three in AAD)
 --
 
 * Azure AD Registered
+???
+### AAD Registered
+1. Personal, BYOD (multi-platform)
+1. Registered when sign into org account w/app on device
+1. Don't sign into device with org accounts
 --
 
 * Azure AD Joined
+???
+### AAD Joined
+1. Closest to traditional AD; sign in with AAD (org) accounts
+1. Windows only
+1. What we're doing
+    1. Devices behave as in "workgroup"; once authed w/web svcs, account behaves like local
+    1. Folder in C:\Users = FirstLast, down-level logon name = 👇
 --
 
     * Down-Level Logon Name: `AzureAD\FirstLast`
+???
+### Down-level logon name
+1. Use this to add to local groups (RDP users, etc)
 --
 * Hybrid Azure AD Joined
+???
+### Hybrid AAD joined
+1. Both AAD and AD; not explored in depth (eliminate on prem!)
 ---
 
 # Enterprise applications
+???
+Managing connected apps that we talked about; users sign in with org accounts
 --
 
 * Administrative control of SSO with third-party apps
+???
+### Administrative control of SSO
+1. AAD was built for this
+1. Like ADFS rolled directly into AD
+1. App access controlled at group or individual level
 --
 
     * Hundreds of applications in the gallery
     * SaaS vendors and/or Microsoft will typically have documentation
+???
+### SaaS vendors...
+1. Moving everything we can towards SSO!
 --
 * Azure AD as IDP for G Suite
+???
+### AAD as IDP
+1. Using AAD creds to sign in to G Suite account
+1. Big win for church and school (relatively easy setup!)
 --
 
     * Google "Cloud Identity Free" licenses
     * Web App Login: "Sign in with Google"
     * Chrome Sync with Azure AD logins
     * Azure AD logins on Chromebooks 😎
+???
+### Licensing
+1. Church G Suite - commercial (cloud identity free)
+    1. School - EDU 👆 cloud Identity free cost-effective...
+    1. Cloud Identity Free = managed account, no Google apps (drive, docs, etc...get all other consumer stuff)
+    1. Seats relative to # of paid licenses purchased (believe 50 per paid license)
+### Web App Login
+1. Google SSO very popular
+    1. Significantly broadens SSO footprint
+### Chrome Sync
+1. Complete browser platform agnosticism (Chrome is primarily supported browser)
+    1. Any device, any platform; browser stuff is there 
+1. Also force Chrome browser mgmt with policy in Intune
+    1. Manage browsers on devices with Chrome management tools, no per-device cost!
+    1. We whitelist extensions, block push notifs (don't need ad for used cars), push any other supported config
+### AAD logins on ChromeOS
+1. Use ChromeBooks less than expected (Intune story is 👍)
+    1. Make much sense in certain use cases (part-timer needs email)
+1. Not including student use...students on Chrome, not going anywhere else soon
+    1. School login gets O365, G Suite, SIS, etc.
 ---
 
 class: center, middle
@@ -163,7 +346,10 @@ class: center, middle
 --
 
 <img src="/citn2019/talk/assets/chrome_signin.gif" style="position:absolute; top:0; left:0; width:100%">
-
+???
+1. One note: no native binding for Mac
+    1. MDM may help...Mosyl: "Mosyle Auth for Mac Login Window" which advertises Azure AD logins for Mac (this is a paid addon)
+    1. We haven't tested this yet (since we don't have any Macs in the school environment, but we plan to do so soon).
 ---
 
 # Conditional Access
@@ -203,6 +389,8 @@ class: center, middle
 --
     * Administrative Templates
 --
+    <img src="/citn2019/talk/assets/admin_templates.png" style="position:absolute; bottom:20px; left:0; width:100%">
+--
     * Custom Profiles/OMA-URI
 --
         * Specify custom OMA-URI and values
@@ -217,6 +405,8 @@ class: center, middle
 --
 
 * Softare Update Policy
+--
+<img src="/citn2019/talk/assets/update_rings.png" style="width:100%; position:absolute; left:0; bottom: 100px;">
 ---
 
 # PowerShell Scripts
@@ -244,7 +434,9 @@ class: center, middle
 --
     * Windows app (Win32)
 --
-    * Company Portal app
+* Company Portal app
+--
+<img src="/citn2019/talk/assets/company_portal.png" style="width:575px; position:absolute; right:110px; bottom:20px;">
 
 ---
 # 😞 Our Pain Points

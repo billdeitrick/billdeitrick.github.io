@@ -68,8 +68,8 @@ permalink: /citn2019/outline/
       1. We want the experience across platforms to be as "self-service" as possible--we push apps and settings that are needed by all, users can install what they need themselves (without having local admin unless required by their role)
       1. We wanted to make sure our users have first available-anywhere productivity available. VPN provided this in the past, but there's nothing about the UX I would call "first class". If we don't provide this, our users will go and get it elsewhere (and take our data with them). We have the policy in place, but want it to be an easy one to enforce.
       1. The bottom line: in terms of device management, we want to manage Windows devices more like they're Chromebooks. I think it's clear that, this is ultimately Microsoft's target with Modern managment, and we've found ourselves reaching for Chromebooks as a default less and less becuase of the positive experience with Windows 10 and modern management.
-   1. 👉Most future proof solution
-      1. All the momentum is with the cloud products at this point; with constant enhancements and licensing changes, it's clear that Microsoft sees their cloud offerings as the path forward for the majority of organizations
+   1. 👉More forward-looking solution
+      1. All the momentum is with the cloud products at this point; with constant enhancements and licensing changes, it's clear that Microsoft sees their cloud offerings as the path forward for the majority of organizations (especially ones of our size)
 1. 👉M365: Two Minute Overview
    1. Microsoft 365 is basically the license that gets you access to all of the Modern Microsoft Management services. We'll talk about the major components here in turn.
    1. Most of you are already familiar with MS NPO offerings, so I won't spend a lot of time here; check out the talk notes for links that will get you started with NPO
@@ -246,7 +246,7 @@ permalink: /citn2019/outline/
       1. 👉Administrative Templates
          1. Yes...this is a profile which basically gives you the option to set the settings from Windows 10 Administrative Templates ADMX from Intune
             1. Went GA in July, hugely increases the number of settings you can configure using config profiles
-            1. TODO: Admin Templates screenshot here
+            1. Admin Templates screenshot
                1. Very different from what you're used to...one big long list, 109 pages!! 😲
                1. Not exhaustive, but fills in a lot of gaps. First choice is always to use another configuration profile type, then fall back to admin templates profile if needed settings aren't somewhere else.
             1. This is what we use for our OneDrive setup; enables automatic SSO with the Windows logon, turns on files on demand, and does KFM (articles onling showing how to do this other ways...this is crazy easy)
@@ -278,7 +278,7 @@ permalink: /citn2019/outline/
                1. Under the hood you're ultimately controlling Windows Update for Business settings
             1. You specify a deferral period for Feature and Quality updates
             1. We use a Fast Ring for some devices to try to catch updates with issues before they go to everyone, and then a "Standard Ring" which is where most devices live
-            1. 👉TODO: Patching screenshot; Here you can see our update rings
+            1. 👉Patching screenshot; Here you can see our update rings
             1. You can pause updates for certain rings (useful for situations where there's a bad patch in the wild) and also uninstall feature updates and quality updates for certain rings (haven't personally tested this yet) if something blows up
             1. You also specify when to interrupt your users (or not) here, and what the overall update story will be for your usres
             1. Overall, you definitely have less granular control with update rings, but it's much less labor-intensive to manage (and Microsoft's cumulative patching model makes this less useful anyway nowadays)
@@ -321,7 +321,7 @@ permalink: /citn2019/outline/
          1. The company portal app is an important part of app deployment; allows for self-service app installation
             1. You make apps "Required" or "Available"; required apps are automatically pushed to the device, available apps can be installed by users in the Company Portal
             1. This is a great self-service option for "optional" applications; users can install them on-demand, just like the app store on their mobile device (doesn't matter if it's a Win32 app, Windows Store app, etc)
-            1. TODO: Company Portal app image
+            1. Company Portal app image
    1. 👉Pain Points
       1. 👉App install error codes for Win32, MSI are often...unhelpful
          1. Means you usually have to resort to more hands-on troubleshooting methods on your test machine. See website for notes on this.
@@ -397,3 +397,7 @@ permalink: /citn2019/outline/
 ## To Test
 * TODO: Windows activation with Provisioning Packages
 * TODO: https://churchitnetworkcom.sharepoint.com/:f:/s/Leadership/EtSkZW5WC6JJjkypLMxeOWsBAF__zdAmm8cCKyAJV9J83A?e=DTSvfy 
+
+## Commands:
+<!--docker run --rm -t --net=host -v ${pwd}:/slides astefanutti/decktape --slides 1-3,10,17,22,27,32,37,41,44,50,53,57,63,68,74,80,82,83 http://10.0.75.1:4000/citn2019/slides slides.pdf-->
+<!--jekyll serve --host 0.0.0.0-->u
