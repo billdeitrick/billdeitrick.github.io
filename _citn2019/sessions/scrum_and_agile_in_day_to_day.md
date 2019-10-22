@@ -2,7 +2,7 @@
 presenter: Alex Nicoletti
 type: session
 title: Scrum/Agile Basics in your Day-to-day Life
-index: 2
+index: 3
 ---
 
 * Scrum/agile is not about getting _more_ done...about getting the _right_ things done
