@@ -29,6 +29,6 @@ index: 4
 
 ## Employee training
 
-* Lynda for staff (or Linked-in Learning)
+* Lynda for staff (or Linked-in Learning?)
     * Once a month Lunch and learn...use pre-existing content so you don't have to create it yourself!
     * Give people a one-month subscription to some paid learning service, like a library subscription...they have a month to complete the training
