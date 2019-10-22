@@ -18,4 +18,10 @@ index: 4
 ## Our Process
 
 * [Bulk enrollment](https://docs.microsoft.com/en-us/intune/enrollment/windows-bulk-enroll)
+* [Install Windows Configuration Designer](https://docs.microsoft.com/en-us/windows/configuration/provisioning-packages/provisioning-install-icd)
 * [Fresh start](https://docs.microsoft.com/en-us/intune/remote-actions/device-fresh-start)
+
+We use these because:
+1) Relatively easy to do in bulk
+2) Give user device that is ready-to-go (all device-scoped stuff done)
+3) Works with older hardware (TPM 1.2)

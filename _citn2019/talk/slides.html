@@ -424,6 +424,7 @@ template: citn-template
 1. Not just GPO in cloud (MDM, MAM)
 1. MDM like for mobile devices
 --
+
 * Device configuration profiles
 ???
 ### Device configuration Profiles
@@ -440,127 +441,314 @@ template: citn-template
     1. Recent additions give more capability
 --
     * Administrative Templates
+???
+### Admin Templates
+1. Win 10 Admin Temp GPO in Intune
+    1. GA in July, major config scope broadening
+    1. Not exhaustive, fills in lots of gaps
 --
     <img src="/citn2019/talk/assets/admin_templates.png" style="position:absolute; bottom:20px; left:0; width:100%">
+???
+### Image
+1. OneDrive setup enabled with Admin Templates
+    1. SSO w/Windows logon, files on demand, KFM
+    1. Makes OneDrive completely seemless
 --
     * Custom Profiles/OMA-URI
+???
+### Custom Profiles
+1. Specify settings no in standard profiles or admin templates
 --
         * Specify custom OMA-URI and values
+???
+### OMA-URI
+1. OMA-URI = Open Mobile Alliance Uniform Resource Identifier
+    1. Path to setting (think URL)
+    1. Follows OMA-DM (Device Management spec)
+1. All possible OMA-URI for Windows in the CSP (configuraiton service provider) ref (great evening reading)
+    1. Find settings to spec custom policies; links on website
+1. We use custom policy for pushing default apps
 --
         * Ingest Custom ADMX
+???
+### Ingest Custom ADMX
+1. Ingest any ADMX template (not just built-in)
+    1. We use for pushing Google Chrome to register as managed browser
+1. Paste XML into Intune, specify OMA-URIs (see docs--links online) using specific syntax
 ---
 template: citn-template
 
 # Patching: No WSUS? No problem!
+???
+Two things needed in tandem:
 --
 
 * Delivery Optimization
+???
+### Delivery Optimization
+1. P2P Update distribution; gets you local caching (no WSUS)
+    1. Config profile sets up parameters
 --
 
-* Softare Update Policy
+* Softare Update Policy: Update Rings
+???
+### Software Update Policy
+1. Separate section from config profs in Intune
+    1. Specify Windows Update settings
+    1. No more control over individual patches (necessary? cumulative patching), instead...
+1. Update Rings
+    1. Groups of devices sharing patching settings
+    1. Primarily, specify deferral period for feature and quality updates
+    1. Fast Ring for a few devices (short deferral), slower [standard] by default
 --
 <img src="/citn2019/talk/assets/update_rings.png" style="width:100%; position:absolute; left:0; bottom: 100px;">
+???
+### Screenshot
+1. Our update rings...
+1. Control: Pause, uninstall last feature update, resume
+    1. Specify settings related to user interruption, dealines in rings
+    1. Less granular control with rings, much less labor intensive
 ---
 template: citn-template
 
 # PowerShell Scripts
+???
+Easy to push custom PS to Windows w/Intune. The sky is the limit!
 --
 
 * Intune Management Extension deploys scripts and installs Win32 apps
+???
+### Intune Mgmgt Extension
+1. Small helper service
+1. Pushed automatically when PS or Win32 app is assigned
 --
 
 * PowerShell Scripts can be run user or machine-scoped
+???
+### PowerShell Scripts can be run user or machine-scoped
+1. You assign to group of users or machine-scoped
+    1. Control context for scripts (user/machine)
+1. Scripts run until complete with success (exit code), 3 retries 10 min timeout
 --
 
 * DO NOT put sensitive data into PowerShell scripts you push with Intune
-
+???
+### DO NOT put sensitive data...
+1. Script contents dumped to plaintext logs!
+    1. Accessible from standard user account, offline if not encrypted!
+1. Example use case: Teams deployment (yes really)...
+    1. Needs command-line param not to run large-and-in-charge, could only get this to behave with PS (when tested)
 ---
 template: citn-template
 
 # App Deployment
+???
+1. A favorite capability (didn't have good answer before)
+    1. Recently added ability to deploy Win32 apps...really robust
+    1. Apps assigned to devices or users
 --
 
 * Types of apps that can be deployed on Windows:
 --
 
     * Microsoft Store apps
+???
+### Microsoft store apps
+1. Straightforward...purchase from store, sync to Intune, deploy
 --
     * Line of business apps (well-behaved MSI)
+???
+### Line of business apps
+1. Really easy...upload MSI, specifi params, done. IME download MSI (using BITS) and install.
 --
     * Windows app (Win32)
+???
+### Windows app
+1. Majority of apps not "well behaved"
+1. Lots of flexibility--MSI or EXE, custom script
+1. process
+    1. Put all resources to silently deploy in folder (exe, scripts, etc)
+    1. Use MS-provided utility to bundle into .intunewin archive
+    1. Upload .intunewin
+    1. Specify entrypoint (script, exe itself, etc)
+    1. Specify requirements needed to isntall (win version, disk space, memory, etc)
+    1. Specify detection rules (folder/file present, app GUID is present, etc)
+1. Lots of room for creativity
+    1. We have poorly behaved test taking app (user data to %programfiles%)
+    1. Installer script symlinks those folder to OneDrive; bam, done.
 --
 * Company Portal app
+???
+### Company Portal app
+1. Self-service app installation
+    1. Required or available - required = automatically pushed, available = <self-service></self-service>
 --
 <img src="/citn2019/talk/assets/company_portal.png" style="width:575px; position:absolute; right:110px; bottom:20px;">
 
+???
+### Image
+1. Great for optional apps, users install on-demand
+1. App type doesn't matter--UX is same
 ---
 template: citn-template
 # 😞 Our Pain Points
 --
 
 * App install error codes for Win32, MSI are often...unhelpful
+???
+### App install error codes
+1. Means hands-on troubleshooting with test machine
+    1. Notes on website
 --
 
 * Built-in cloud-based printer deployment solution is...nonexistent
     * Needed third party product (Printix)
+???
+### Built-in cloud-based printer deployment
+1. Third-party (paid) product: Printix (no print server)
+1. Came from Papercut; Printix has no realy reporting, visibility isn't as good
+1. Printix does cover Win, Mac, iOS, Android
+1. 30% NPO discount
+1. A whole session...talk to me if interested. :-)
 --
 * Wi-Fi policies will report an error if pushed to a device without a Wi-Fi adapter, which we find...annoying
+???
+### Wi-Fi policies
+1. Err if pushed to device w/no Wi-Fi adapter
+1. Probably helpful, means need separate groups for devices w/ and w/o adapter
 --
 
 * Reporting intervals are...really slow 🐢
+???
+### Reporting intervals
+1. Graphs are pretty, takes awhile for them to reflect reality
 ---
 template: citn-template
 # 🏁 Getting Devices "Business Ready"
+???
+1. Wasn't sure what to call this (enroll, register, join mean different things)
+    1. "Business ready" is what MS calls a device ready for a user to used
+    1. Question: How to we take a device form "boxed to busy"
+    1. How to get devices into Azure AD/Intune and manage them?
+1. Actually more nuanced...different options depending on needs (another session!)
+    1. Focusing on what we've done (cloud-only--our goal)
 --
 
 * Azure AD/Intune Integration
+???
+### Azure AD/Intune Integration
+1. Well integrated; specify MDM in Azure, join and auto-enrolled for management
+    1. Recall: Registered = BYOD, Joined = Org-owned
 --
 
 * Primary choice: User or IT-driven?
+???
+### Primary choice
+1. MS parlance: self-enrollment or administrator-based
+    1. Can hand users unopened box, they unpack, sign in and go
+        1. Downside: more user time for device to be ready
+        1. Upside: works great if no IT a remote site, need light touch, or want to ship
+    1. Can make more IT-driven
+        1. IT does prep, hands user ready-to-roll device
+        1. Downside: IT time/touch required
+        1. Upside: UX -- device ready
 --
 
     * Self-enrollment methods
         * BYOD
         * Azure AD Join
         * Autopilot
+???
+### Self-enrollment methods:
+1. Not hitting everything...trying to focus on most relevant
+1. BYOD: users self-register personal devices ("Connect Work or School Account" from Settings app)
+1. Azure AD Join: User joins device themselves during OOBE
+    1. Downside: takes time for all policies to pull down (large app installs, etc)
+1. Autopilot: Sort of like Microsoft's version of DEP, but more
+    1. Really interested in the "White Glove" experience
+    1. IT connects device to Modern Management environment, device pulls down policies, then reseals for end-user (gives simplified OOBE)
+    1. This requires TPM 2.0 (rules out almost all of our existing devices)
+    1. Lots more we could talk about
 --
     * Administrator-based enrollment methods
         * Hybrid Azure AD Join
         * Bulk enrollment
+???
+### Hybrid AAD Join
+1. Use GPO to connect devices to AAD/Intune
+1. Bulk enrollment
+    1. Use Windows Configuration Designer to create Provisioning package
+    1. Provisioning package contains info to join device to AAD (token)
+        1. Can be configured to blow-away device vendor-added apps as part of setup
+    1. Drop token on flash drive; plug in at OOBE 
+    1. If installing Win 10 off of flash drive, basically automagic!
 --
 * Our process: Bulk enrollment, Fresh Start reset
+???
+### Our process
+1. "Gray glove deployment"
+1. Gives users almost experience of AutoPilot white glove deployment, not require TPM 2.0 (1.2)
+1. Use bulk enrollment (quickly join w/provisioning package)--devices w/Win 10 or as OS upgrade
 ---
 template: citn-template
 # 🍨 Random Tasty Tidbits
+???
+Wasn't sure where else to put this stuff...
 --
 
 * 🔐 BitLocker: Key escrow to Azure AD, Intune policy for automatic encryption
+???
+### BitLocker
+1. Super easy to set up, no good reason not to be deploying if have TPM > 1.2
 --
 
 * 👍 Azure AD Sign-in logs
+???
+### Sign-in logs
+1. Quickly see user sign-in logs, flagged for risk
 --
 
 * 😎 Azure Cloud Shell
+???
+### Azure Cloud Shell
+1. Containerized powershell instance in browser (on Linux)...nice because you're probably already authed with MS account
+1. Pennies per month for Azure storage account
 --
 
 * 🔑 Intune: Compliance policies
+???
+### Compliance policies
+1. Specify standards for your device to meet for nice green status boxes
+    1. BitLocker enabled, Win ver > x, etc.
+1. Can be combined with conditional access rules in AAD. Powerful!
 --
 
 * 📱 Mobile App Management
 
+???
+### Mobile App Management
+1. Specify configuration for apps users use, without needing device in MDM
+1. Use w/conditional access to force users to use MS apps (email...not os native)
+    1. Create sandboxed, encrypted environment on personal device for org data
+    1. Can wipe just org data if you want
+    1. Big Win: Don't need to manage entire device, just apps w/access to your data.
+    1. Works in conjunction w/conditional access to force approved apps
 ---
 template: citn-template
 
-# Conclusion: Our Goals
+# Conclusion: Is this the right fit?
 
 --
-
-* Best fit for ministry needs within licensing and cost constraints
-* Better Windows device management: NO MORE IMAGING!! 🎉
-* SSO for SaaS apps
-* Mobile Application Management (MAM) 
-* Device-agnostic, user-driven, available-from-anywhere experience
-* Most future proof solution
+* What are your dependencies on traditional AD? Can they be eliminated?
+    * LDAP, RADIUS, traditional Windows Auth
+--
+* Our goals:
+    * Best fit for ministry needs within licensing and cost constraints
+    * Better Windows device management: NO MORE IMAGING!! 🎉
+    * SSO for SaaS apps
+    * Mobile Application Management (MAM) 
+    * Device-agnostic, user-driven, available-from-anywhere experience
+    * Most future proof solution
 
 ---
 template: citn-template

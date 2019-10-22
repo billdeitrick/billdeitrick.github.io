@@ -390,14 +390,6 @@ permalink: /citn2019/outline/
    1. Check out the Microsoft Learn link 
 1. Q+A!
 
-## Content ToDo
-* TODO: Enrollment and AutoPilot
-* TODO: Conclusion
-
-## To Test
-* TODO: Windows activation with Provisioning Packages
-* TODO: https://churchitnetworkcom.sharepoint.com/:f:/s/Leadership/EtSkZW5WC6JJjkypLMxeOWsBAF__zdAmm8cCKyAJV9J83A?e=DTSvfy 
-
 ## Commands:
 <!--docker run --rm -t --net=host -v ${pwd}:/slides astefanutti/decktape --slides 1-3,10,17,22,27,32,37,41,44,50,53,57,63,68,74,80,82,83 http://10.0.75.1:4000/citn2019/slides slides.pdf-->
-<!--jekyll serve --host 0.0.0.0-->u
+<!--jekyll serve --host 0.0.0.0-->
