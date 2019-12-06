@@ -5,6 +5,12 @@ title: Modern Microsoft - We're Not in Kansas Anymore
 index: 6
 ---
 
+## Presenter's Notes
+
+https://vibrant.cloud/citn2019
+[Slides](https://static1.squarespace.com/static/5bd21cb7755be22a659bd2e2/t/5dacdad625e2af536e043f2b/1571609308035/Modern+Microsoft+-+CITN.pdf)
+[Notes](https://static1.squarespace.com/static/5bd21cb7755be22a659bd2e2/t/5dacdb07aa1e3231b4d3cb3f/1571609351636/Modern+Microsoft+Notes+-+CITN.pdf)
+
 ## Introduction
 
 * Changes are trending broader; greater fundamental shifts (identity systems, core infrastructure)
